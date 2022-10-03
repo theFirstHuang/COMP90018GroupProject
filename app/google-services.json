@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "657113879101",
+    "project_id": "auth-da16a",
+    "storage_bucket": "auth-da16a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:657113879101:android:6a067f40b0f69fe7851054",
+        "android_client_info": {
+          "package_name": "com.thefirsthuang.authapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "657113879101-u85d8sgpugaqi192emgebmuhmgidf03l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCynZTQ3l1in8oU9zlXCPy7aSk_PgEK6Mg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "657113879101-u85d8sgpugaqi192emgebmuhmgidf03l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
