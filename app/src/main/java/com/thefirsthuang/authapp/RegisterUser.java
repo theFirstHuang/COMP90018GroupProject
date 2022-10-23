@@ -27,6 +27,8 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
 
     private FirebaseAuth mAuth;
 
+    private String photoUrl;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,10 +40,10 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
         banner = (TextView) findViewById(R.id.bannerRegister);
         banner.setOnClickListener(this);
 
-        registerUser = (Button) findViewById(R.id.registerUser);
+        registerUser = (Button) findViewById(R.id.updateProfileEdit);
         registerUser.setOnClickListener(this);
 
-        editTextFullName = (EditText) findViewById(R.id.fullName);
+        editTextFullName = (EditText) findViewById(R.id.fullNameProfileEdit);
         editTextAge = (EditText) findViewById(R.id.Age);
         editTextEmail = (EditText) findViewById(R.id.emailRegister);
         editTextPassword = (EditText) findViewById(R.id.passwordRegister);
@@ -55,7 +57,7 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
             case R.id.bannerRegister:
                 startActivity(new Intent(this, MainActivity.class));
                 break;
-            case R.id.registerUser:
+            case R.id.updateProfileEdit:
                 registerUser();
                 break;
         }
@@ -104,7 +106,9 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            User user = new User(fullName, age, email);
+                            //add a default profile photo for new users
+                            photoUrl = "https://firebasestorage.googleapis.com/v0/b/auth-da16a.appspot.com/o/Users%2F1666531906615.png?alt=media&token=947d1149-72ae-403a-bf96-60c5131eb7df";
+                            User user = new User(fullName, age, email, photoUrl);
 
                             FirebaseDatabase.getInstance().getReference("Users")
                                     .child(FirebaseAuth.getInstance().getCurrentUser().getUid())

@@ -23,6 +23,7 @@ import com.google.firebase.auth.FirebaseUser;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
     private boolean skipEmailVerification;
+    private boolean testMode;
 
     private TextView register,forgotPassword;
     private EditText editTextEmail, editTextPassword;
@@ -53,7 +54,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         mAuth = FirebaseAuth.getInstance();
 
+        //you can comment code below to turn off email verification
         skipEmailVerification = true;
+        testMode = true;
+
 
     }
 
@@ -77,6 +81,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         String email = editTextEmail.getText().toString().trim();
         String password = editTextPassword.getText().toString().trim();
 
+        if (testMode) {
+            skipEmailVerification = true;
+            email = "123@123.com";
+            password = "123456";
+            editTextEmail.setText(email);
+            editTextPassword.setText(password);
+        }
         if (email.isEmpty()) {
             editTextEmail.setError("Email is required!");
             editTextEmail.requestFocus();
@@ -98,6 +109,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             return;
         }
 
+
         progressBar.setVisibility(View.VISIBLE);
 
         mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -105,8 +117,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
 
-                    //you can comment code below to turn off email verification
-                    skipEmailVerification = false;
+
                     if (!skipEmailVerification) {
                         //check if email is been verified
                         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
