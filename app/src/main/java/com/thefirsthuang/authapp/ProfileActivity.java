@@ -1,29 +1,19 @@
 package com.thefirsthuang.authapp;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.ContentResolver;
 import android.content.Intent;
-import android.graphics.Color;
-import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
-import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -58,7 +48,6 @@ public class ProfileActivity extends AppCompatActivity {
 
         logout = (Button) findViewById(R.id.signOut);
         editProfile = (Button) findViewById(R.id.editProfile);
-        refresh = (Button) findViewById(R.id.refresh);
 
         final TextView fullNameProfile = (TextView) findViewById(R.id.fullNameProfile);
         final TextView emailProfile = (TextView) findViewById(R.id.emailProfile);
@@ -74,6 +63,14 @@ public class ProfileActivity extends AppCompatActivity {
         //fetch user image from fireBase storage
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference("Users");
+
+        //catch the flag send by EditProfileActivity to refresh page
+        String flag = getIntent().getStringExtra("flag");
+        if(flag != null && flag.equals("true")) {
+            //refresh page
+            refresh();
+        }
+
 
         reference.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -130,17 +127,25 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
-        refresh.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(ProfileActivity.this, ProfileActivity.class);
-                finish();
-                overridePendingTransition(0, 0);
-                startActivity(i);
-                overridePendingTransition(0, 0);
-            }
-        });
 
+
+
+    }
+
+    private void refresh() {
+        Intent i = new Intent(ProfileActivity.this, ProfileActivity.class);
+        finish();
+        //delay 2.5 seconds to refresh
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+            }
+        }, 2500);
+        System.out.println("REFRESH!!!");
+        overridePendingTransition(0, 0);
+        startActivity(i);
+        overridePendingTransition(0, 0);
     }
 
 

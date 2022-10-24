@@ -130,9 +130,6 @@ public class EditProfileActivity extends AppCompatActivity {
         progressBarProfileEdit.setVisibility(View.VISIBLE);
         newName = fullNameProfileEdit.getText().toString().trim();
 
-        System.out.println(updateImageUri);
-        System.out.println(newName);
-        System.out.println(currentName);
         if (updateImageUri != null) {
             StorageReference fileReference = storageReference.child(System.currentTimeMillis()
                     + "." + getFileExtension(updateImageUri));
@@ -153,9 +150,7 @@ public class EditProfileActivity extends AppCompatActivity {
                                     newImageUrl = uri.toString();
                                     //find user info in DB and update Db
                                     updateDB(0);
-                                    //back to profile page
                                     progressBarProfileEdit.setVisibility(View.GONE);
-                                    //Snackbar.make(findViewById(android.R.id.content),"Image Uploaded", Snackbar.LENGTH_LONG).show();
                                 }
                             }).addOnFailureListener(new OnFailureListener() {
                                 @Override
@@ -165,13 +160,10 @@ public class EditProfileActivity extends AppCompatActivity {
                                 }
                             });
 
-
-                            //startActivity(new Intent(EditProfileActivity.this, ProfileActivity.class));
+                            //back to profile page, send a flag to profileActivity
                             Intent i = new Intent(EditProfileActivity.this, ProfileActivity.class);
-                            finish();
-                            overridePendingTransition(0, 0);
+                            i.putExtra("flag", "true");
                             startActivity(i);
-                            overridePendingTransition(0, 0);
                         }
 
                     })
@@ -187,12 +179,10 @@ public class EditProfileActivity extends AppCompatActivity {
             updateDB(1);
             progressBarProfileEdit.setVisibility(View.GONE);
             Toast.makeText(this, "Username changed", Toast.LENGTH_SHORT).show();
-            //startActivity(new Intent(EditProfileActivity.this, ProfileActivity.class));
+            //back to profile page, send a flag to profileActivity
             Intent i = new Intent(EditProfileActivity.this, ProfileActivity.class);
-            finish();
-            overridePendingTransition(0, 0);
+            i.putExtra("flag", "true");
             startActivity(i);
-            overridePendingTransition(0, 0);
         }else {
             progressBarProfileEdit.setVisibility(View.GONE);
             Toast.makeText(this, "Nothing changed", Toast.LENGTH_SHORT).show();

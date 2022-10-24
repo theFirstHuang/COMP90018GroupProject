@@ -6,22 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".ProfileActivity">
 
-    <TextView
-        android:id="@+id/profileText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="Welcome to your profile"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <Button
         android:id="@+id/signOut"
         android:layout_width="380dp"
         android:layout_height="70dp"
-        android:layout_marginTop="500dp"
+        android:layout_marginTop="50dp"
         android:backgroundTint="#0ED6B9"
         android:text="Logout"
         android:textColor="#ffffff"
@@ -30,7 +19,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profileText" />
+        app:layout_constraintTop_toBottomOf="@+id/profileImage" />
 
     <TextView
         android:id="@+id/emailTitle"
@@ -39,28 +28,19 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
         android:text="Email Address"
+        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profileText" />
-
-    <TextView
-        android:id="@+id/fullNameTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
-        android:text="Full Name"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/emailTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/profileImage" />
 
     <TextView
         android:id="@+id/ageTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
+        android:layout_marginStart="104dp"
         android:layout_marginTop="32dp"
         android:text="Age"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fullNameTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/emailTitle" />
 
     <TextView
         android:id="@+id/emailProfile"
@@ -75,10 +55,15 @@
         android:id="@+id/fullNameProfile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="240dp"
         android:text=""
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/fullNameTitle"
-        app:layout_constraintTop_toTopOf="@+id/fullNameTitle" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Welcome"
+        tools:text="Guest" />
 
     <TextView
         android:id="@+id/ageProfile"
@@ -93,32 +78,37 @@
         android:id="@+id/profileImage"
         android:layout_width="180dp"
         android:layout_height="180dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="50dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ageProfile"
+        app:layout_constraintTop_toBottomOf="@+id/fullNameProfile"
         tools:srcCompat="@tools:sample/avatars" />
 
     <Button
         android:id="@+id/editProfile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_width="88dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="120dp"
         android:backgroundTint="#0ED6B9"
         android:text="Edit"
         android:textColor="#ffffff"
-        android:textSize="26sp"
+        android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profileImage" />
+        app:layout_constraintStart_toEndOf="@+id/Welcome"
+        app:layout_constraintTop_toTopOf="@+id/Welcome" />
 
-    <Button
-        android:id="@+id/refresh"
+    <TextView
+        android:id="@+id/Welcome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="refresh"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="220dp"
+        android:text="Welcome"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editProfile" />
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
