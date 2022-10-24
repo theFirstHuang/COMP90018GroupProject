@@ -155,17 +155,23 @@ public class EditProfileActivity extends AppCompatActivity {
                                     updateDB(0);
                                     //back to profile page
                                     progressBarProfileEdit.setVisibility(View.GONE);
-                                    Snackbar.make(findViewById(android.R.id.content),"Image Uploaded", Snackbar.LENGTH_LONG).show();
+                                    //Snackbar.make(findViewById(android.R.id.content),"Image Uploaded", Snackbar.LENGTH_LONG).show();
                                 }
                             }).addOnFailureListener(new OnFailureListener() {
                                 @Override
                                 public void onFailure(@NonNull Exception exception) {
+                                    progressBarProfileEdit.setVisibility(View.GONE);
                                     Toast.makeText(EditProfileActivity.this, "User profile not update cause by URL issue", Toast.LENGTH_SHORT).show();
                                 }
                             });
 
 
-                            startActivity(new Intent(EditProfileActivity.this, ProfileActivity.class));
+                            //startActivity(new Intent(EditProfileActivity.this, ProfileActivity.class));
+                            Intent i = new Intent(EditProfileActivity.this, ProfileActivity.class);
+                            finish();
+                            overridePendingTransition(0, 0);
+                            startActivity(i);
+                            overridePendingTransition(0, 0);
                         }
 
                     })
@@ -181,7 +187,12 @@ public class EditProfileActivity extends AppCompatActivity {
             updateDB(1);
             progressBarProfileEdit.setVisibility(View.GONE);
             Toast.makeText(this, "Username changed", Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(EditProfileActivity.this, ProfileActivity.class));
+            //startActivity(new Intent(EditProfileActivity.this, ProfileActivity.class));
+            Intent i = new Intent(EditProfileActivity.this, ProfileActivity.class);
+            finish();
+            overridePendingTransition(0, 0);
+            startActivity(i);
+            overridePendingTransition(0, 0);
         }else {
             progressBarProfileEdit.setVisibility(View.GONE);
             Toast.makeText(this, "Nothing changed", Toast.LENGTH_SHORT).show();
@@ -210,6 +221,7 @@ public class EditProfileActivity extends AppCompatActivity {
 
     private void updateDB(int flag) {
         HashMap User = new HashMap();
+        //don't update URL if no update of URL
         //using hashMap
         if (flag == 1) {    //fullName
             User.put("fullName", newName);

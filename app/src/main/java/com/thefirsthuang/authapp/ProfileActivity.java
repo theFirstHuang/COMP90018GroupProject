@@ -31,7 +31,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
+
 import com.squareup.picasso.Picasso;
 
 public class ProfileActivity extends AppCompatActivity {
@@ -46,6 +46,7 @@ public class ProfileActivity extends AppCompatActivity {
     private String userID;
 
     private Button logout;
+    private Button refresh;
 
     private ImageView profileImage;
     private Button editProfile;
@@ -57,6 +58,7 @@ public class ProfileActivity extends AppCompatActivity {
 
         logout = (Button) findViewById(R.id.signOut);
         editProfile = (Button) findViewById(R.id.editProfile);
+        refresh = (Button) findViewById(R.id.refresh);
 
         final TextView fullNameProfile = (TextView) findViewById(R.id.fullNameProfile);
         final TextView emailProfile = (TextView) findViewById(R.id.emailProfile);
@@ -124,10 +126,20 @@ public class ProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(ProfileActivity.this, EditProfileActivity.class));
+
             }
         });
 
-
+        refresh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(ProfileActivity.this, ProfileActivity.class);
+                finish();
+                overridePendingTransition(0, 0);
+                startActivity(i);
+                overridePendingTransition(0, 0);
+            }
+        });
 
     }
 
