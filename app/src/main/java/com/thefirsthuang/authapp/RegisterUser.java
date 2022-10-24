@@ -29,6 +29,8 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
 
     private String photoUrl;
 
+    private String defaultURL;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +51,8 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
         editTextPassword = (EditText) findViewById(R.id.passwordRegister);
 
         progressBar = (ProgressBar) findViewById(R.id.progressBarRegister);
+
+        defaultURL = "https://firebasestorage.googleapis.com/v0/b/auth-da16a.appspot.com/o/Users%2F1666531906615.png?alt=media&token=947d1149-72ae-403a-bf96-60c5131eb7df";
     }
 
     @Override
@@ -107,7 +111,7 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             //add a default profile photo for new users
-                            photoUrl = "https://firebasestorage.googleapis.com/v0/b/auth-da16a.appspot.com/o/Users%2F1666531906615.png?alt=media&token=947d1149-72ae-403a-bf96-60c5131eb7df";
+                            photoUrl = defaultURL;
                             User user = new User(fullName, age, email, photoUrl);
 
                             FirebaseDatabase.getInstance().getReference("Users")

@@ -41,6 +41,8 @@ public class ProfileActivity extends AppCompatActivity {
     private ImageView profileImage;
     private Button editProfile;
 
+    private String defaultURL;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
